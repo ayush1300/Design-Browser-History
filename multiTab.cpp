@@ -1,12 +1,15 @@
 class Tab {
 public:
-    Tab(string homepage) {
+    Tab(string homepage) 
+    {
         s.push_back(homepage);
         curr++;
     }
     
-    void visit(string url) {
-        if(curr<s.size()-1) {
+    void visit(string url) 
+    {
+        if(curr<s.size()-1) 
+	{
             s.erase(s.begin()+curr+1,s.begin()+s.size());
         }
     
@@ -15,7 +18,8 @@ public:
         
     }
     
-    string back(int steps) {
+    string back(int steps)
+    {
         if(curr<steps)
         {
             curr = 0;
@@ -24,12 +28,11 @@ public:
         {
             curr = curr - steps;
         }
-        
-       
         return s[curr];
     }
     
-    string forward(int steps) {
+    string forward(int steps) 
+    {
         if(curr+steps >= s.size() )
         {
             curr  = s.size()-1;
@@ -50,23 +53,27 @@ private:
 
 class BrowserHistory{
 public:
-	BrowserHistory(string homepage) {
+	BrowserHistory(string homepage) 
+	{
     	
-    	if(n==-1){
-		    n=0;
-    		Tab* obj = new Tab(homepage);
-    		defaultHomepage = homepage;
-    		s.push_back(obj);
+    		if(n==-1)
+		{
+			n=0;
+    			Tab* obj = new Tab(homepage);
+    			defaultHomepage = homepage;
+    			s.push_back(obj);
+    		}
     	}
-    }
 	
-	void addTab(){
+	void addTab()
+	{
 		Tab* ob = new Tab(defaultHomepage);
 		s.push_back(ob);
 		n = s.size()-1;
 	}
 	
-	void closeTab(){
+	void closeTab()
+	{
 		if(n>0)
 		{
 			s.erase(s.begin()+n);
@@ -106,25 +113,28 @@ public:
 	}
 	
 		
-	void visit(string url) {
+	void visit(string url) 
+	{
         
-        s[n]->visit(url);
+        	s[n]->visit(url);
         
-    }	
+    	}	
 	
-	string back(int steps) {
+	string back(int steps) 
+	{
 		
-        return s[n]->back(steps);
+        	return s[n]->back(steps);
     
 	}
 	
-	string forward(int steps) {
+	string forward(int steps) 
+	{
         
-        return s[n]->forward(steps);
-    }
+        	return s[n]->forward(steps);
+    	}
 		
 private:
-	vector<Tab*> s;
+    vector<Tab*> s;
     int n = -1;
     string defaultHomepage="";
 		
